@@ -1,0 +1,23 @@
+apiVersion: v1
+entries:
+  backend-nodejs:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2019-05-08T07:00:26.891139325-05:00
+    description: A Helm chart for Kubernetes
+    digest: 1507bf5eff4ed75fda1000800b4d7ce42c57dd31b99709fe17dd3f73d59838a0
+    name: backend-nodejs
+    urls:
+    - backend-nodejs-0.1.0.tgz
+    version: 0.1.0
+  emi:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2019-05-08T07:00:26.89133358-05:00
+    description: A Helm chart for Kubernetes
+    digest: 1d29d4bbe5a0d1ce943484c73781753235b1c33f566bd3c4dd684a9ff3cc05e6
+    name: emi
+    urls:
+    - emi-0.1.0.tgz
+    version: 0.1.0
+generated: 2019-05-08T07:00:26.890726023-05:00

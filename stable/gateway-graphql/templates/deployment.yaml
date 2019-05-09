@@ -25,7 +25,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ .Values.env.graphql.endPointPort }}
               protocol: TCP
           livenessProbe:
             httpGet:
@@ -38,67 +38,67 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
-        - name: NODE_ENV
-	  value: {{ .Values.env.nodeEnv }}
-        - name: GRAPHQL_END_POINT_PORT
-	  value: {{ .Values.env.graphql.endPointPort }}
-        - name: GRAPHQL_END_POINT_HOST
-	  value: {{ .Values.env.graphql.endPointHost }}
-        - name: GRAPHQL_HTTP_END_POINT
-	  value: {{ .Values.env.graphql.httpEndPoint }}
-        - name: GRAPHIQL_HTTP_END_POINT
-	  value: {{ .Values.env.graphql.httpEndPoint }}
-        - name: GRAPHQL_LIVENESS_HTTP_END_POINT
-	  value: {{ .Values.env.graphql.livenessHttpEndPoint }}
-        - name: GRAPHQL_WS_END_POINT
-	  value: {{ .Values.env.graphql.wsEndPoint }}
-        - name: APOLLO_ENGINE_API_KEY
-	{{- if .Values.env.apollo.secretEngineApiKey }}
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.env.apollo.secretEngineApiKey }}
-              key: {{ .Values.env.apollo.secretKeyEngineApiKey }}
-        {{- else }}
-	  value: {{ .Values.env.apollo.engineApiKey }}
-        {{- end }}
-        - name: APOLLO_ENGINE_LOG_LEVEL
-	  value: {{ .Values.env.apollo.engineLogLevel }}
-        - name: BROKER_TYPE
-	  value: {{ .Values.env.brokerType }}
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-	  value: {{ .Values.env.googleApplicationCredentials }}
-        - name: GCLOUD_PROJECT_ID
-	{{- if .Values.env.configmapGcloudProjectId }}
-          valueFrom:
-            configMapKeyRef:
-              name: {{ .Values.env.configmapGcloudProjectId }}
-              key: {{ .Values.env.configmapKeyGcloudProjectId }}
-        {{- else }}
-	  value: {{ .Values.env.gcloudProjectId }}
-        {{- end }}
-        - name: GATEWAY_REPLIES_TOPIC
-	  value: {{ .Values.env.gateway.repliesTopic }}
-        - name: GATEWAY_REPLIES_TOPIC_SUBSCRIPTION
-	  value: {{ .Values.env.gateway.repliesTopicSubscription }}
-        - name: GATEWAY_EVENTS_TOPIC
-	  value: {{ .Values.env.gateway.eventsTopic }}
-        - name: GATEWAY_EVENTS_TOPIC_SUBSCRIPTION
-	  value: {{ .Values.env.gateway.eventsTopicSubscription }}
-        - name: GATEWAY_MATERIALIZED_VIEW_UPDATES_TOPIC
-	  value: {{ .Values.env.gateway.materializedViewUpdatesTopic }}
-        - name: GATEWAY_MATERIALIZED_VIEW_UPDATES_TOPIC_SUBSCRIPTION
-	  value: {{ .Values.env.gateway.materializedViewUpdatesTopicSubscription }}
-        - name: REPLY_TIMEOUT
-	  value: {{ .Values.env.replyTimeout }}
-        - name: JWT_PUBLIC_KEY
-	{{- if  .Values.env.secretJwtPublicKey }}
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.env.secretJwtPublicKey }}
-              key: {{ .Values.env.secretKeyJwtPublicKey }}
-        {{- else }}
-	  value: {{ .Values.env.jwtPublicKey }}
-        {{- end }}
+          - name: NODE_ENV
+            value: {{ .Values.env.nodeEnv }}
+          - name: GRAPHQL_END_POINT_PORT
+            value: {{ .Values.env.graphql.endPointPort }}
+          - name: GRAPHQL_END_POINT_HOST
+            value: {{ .Values.env.graphql.endPointHost }}
+          - name: GRAPHQL_HTTP_END_POINT
+            value: {{ .Values.env.graphql.httpEndPoint }}
+          - name: GRAPHIQL_HTTP_END_POINT
+            value: {{ .Values.env.graphql.httpEndPoint }}
+          - name: GRAPHQL_LIVENESS_HTTP_END_POINT
+            value: {{ .Values.env.graphql.livenessHttpEndPoint }}
+          - name: GRAPHQL_WS_END_POINT
+            value: {{ .Values.env.graphql.wsEndPoint }}
+          - name: APOLLO_ENGINE_API_KEY
+          {{- if .Values.env.apollo.secretEngineApiKey }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.env.apollo.secretEngineApiKey }}
+                key: {{ .Values.env.apollo.secretKeyEngineApiKey }}
+          {{- else }}
+            value: {{ .Values.env.apollo.engineApiKey }}
+          {{- end }}
+          - name: APOLLO_ENGINE_LOG_LEVEL
+            value: {{ .Values.env.apollo.engineLogLevel }}
+          - name: BROKER_TYPE
+            value: {{ .Values.env.brokerType }}
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: {{ .Values.env.googleApplicationCredentials }}
+          - name: GCLOUD_PROJECT_ID
+          {{- if .Values.env.configmapGcloudProjectId }}
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Values.env.configmapGcloudProjectId }}
+                key: {{ .Values.env.configmapKeyGcloudProjectId }}
+          {{- else }}
+            value: {{ .Values.env.gcloudProjectId }}
+          {{- end }}
+          - name: GATEWAY_REPLIES_TOPIC
+            value: {{ .Values.env.gateway.repliesTopic }}
+          - name: GATEWAY_REPLIES_TOPIC_SUBSCRIPTION
+            value: {{ .Values.env.gateway.repliesTopicSubscription }}
+          - name: GATEWAY_EVENTS_TOPIC
+            value: {{ .Values.env.gateway.eventsTopic }}
+          - name: GATEWAY_EVENTS_TOPIC_SUBSCRIPTION
+            value: {{ .Values.env.gateway.eventsTopicSubscription }}
+          - name: GATEWAY_MATERIALIZED_VIEW_UPDATES_TOPIC
+            value: {{ .Values.env.gateway.materializedViewUpdatesTopic }}
+          - name: GATEWAY_MATERIALIZED_VIEW_UPDATES_TOPIC_SUBSCRIPTION
+            value: {{ .Values.env.gateway.materializedViewUpdatesTopicSubscription }}
+          - name: REPLY_TIMEOUT
+            value: {{ .Values.env.replyTimeout }}
+          - name: JWT_PUBLIC_KEY
+          {{- if  .Values.env.secretJwtPublicKey }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.env.secretJwtPublicKey }}
+                key: {{ .Values.env.secretKeyJwtPublicKey }}
+          {{- else }}
+            value: {{ .Values.env.jwtPublicKey }}
+          {{- end }}
 
       {{- with .Values.nodeSelector }}
       nodeSelector:

@@ -47,7 +47,7 @@ spec:
           - name: GRAPHQL_HTTP_END_POINT
             value: {{ .Values.env.graphql.httpEndPoint }}
           - name: GRAPHIQL_HTTP_END_POINT
-            value: {{ .Values.env.graphql.httpEndPoint }}
+            value: {{ .Values.env.graphql.httpEndPointGraphiql }}
           - name: GRAPHQL_LIVENESS_HTTP_END_POINT
             value: {{ .Values.env.graphql.livenessHttpEndPoint }}
           - name: GRAPHQL_WS_END_POINT
@@ -91,11 +91,11 @@ spec:
           - name: REPLY_TIMEOUT
             value: {{ .Values.env.replyTimeout }}
           - name: JWT_PUBLIC_KEY
-          {{- if  .Values.env.secretJwtPublicKey }}
+          {{- if  .Values.env.configmapJwtPublicKey }}
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.env.secretJwtPublicKey }}
-                key: {{ .Values.env.secretKeyJwtPublicKey }}
+                name: {{ .Values.env.configmapJwtPublicKey }}
+                key: {{ .Values.env.configmapKeyJwtPublicKey }}
           {{- else }}
             value: {{ .Values.env.jwtPublicKey }}
           {{- end }}

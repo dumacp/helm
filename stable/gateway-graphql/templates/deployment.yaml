@@ -99,7 +99,7 @@ spec:
           - name: JWT_PUBLIC_KEY
           {{- if  .Values.env.configmapJwtPublicKey }}
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: {{ .Values.env.configmapJwtPublicKey }}
                 key: {{ .Values.env.configmapKeyJwtPublicKey }}
           {{- else }}

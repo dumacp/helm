@@ -47,7 +47,7 @@ spec:
           - name: NODE_ENV
             value: {{ .Values.env.nodeEnv }}
           - name: GRAPHQL_END_POINT_PORT
-            value: {{ .Values.env.graphql.endPointPort }}
+            value: "{{ .Values.env.graphql.endPointPort }}"
           - name: GRAPHQL_END_POINT_HOST
             value: {{ .Values.env.graphql.endPointHost }}
           - name: GRAPHQL_HTTP_END_POINT
@@ -95,7 +95,7 @@ spec:
           - name: GATEWAY_MATERIALIZED_VIEW_UPDATES_TOPIC_SUBSCRIPTION
             value: {{ .Values.env.gateway.materializedViewUpdatesTopicSubscription }}
           - name: REPLY_TIMEOUT
-            value: {{ .Values.env.replyTimeout }}
+            value: "{{ .Values.env.replyTimeout }}"
           - name: JWT_PUBLIC_KEY
           {{- if  .Values.env.configmapJwtPublicKey }}
             valueFrom:

@@ -24,24 +24,23 @@ resources:
     cpu: 50m
     memory: 128Mi
 
-backend:
-  env:
-    googleApplicationCredentials: "/etc/GOOGLE_APPLICATION_CREDENTIALS/gcloud-service-key.json"
-    eventStoreBrokerType: "PUBSUB"
-    eventStoreBrokerEventsTopic: "events"
-    eventStoreType: "MONGO"
-    eventStoreURL: "mongodb://dbevents-0.dbevents:27017,dbevents-1.dbevents:27017,dbevents-2.dbevents:27017/test?replicaSet=rs0"
-    secretEventStoreURL: ""
-    secretEventStoreURLKey: ""
-    eventStoreAggregatesDB: "Aggregates"
-    eventStoreNameDB: "EventStore"
-    mongodbURL: ""
-    mongodbNameDB: ""
-    configmapJwtPublicKey: ""
-    configmapKeyJwtPublicKey: ""
-    emiGatewayRepliesTopicSubscription: ""
-    replyTimeout: "2000"
-    lockVersion: ""
+env:
+  googleApplicationCredentials: "/etc/GOOGLE_APPLICATION_CREDENTIALS/gcloud-service-key.json"
+  eventStoreBrokerType: "PUBSUB"
+  eventStoreBrokerEventsTopic: "events"
+  eventStoreType: "MONGO"
+  eventStoreURL: "mongodb://dbevents-0.dbevents:27017,dbevents-1.dbevents:27017,dbevents-2.dbevents:27017/test?replicaSet=rs0"
+  secretEventStoreURL: ""
+  secretEventStoreURLKey: ""
+  eventStoreAggregatesDB: "Aggregates"
+  eventStoreNameDB: "EventStore"
+  mongodbURL: ""
+  mongodbNameDB: ""
+  configmapJwtPublicKey: ""
+  configmapKeyJwtPublicKey: ""
+  emiGatewayRepliesTopicSubscription: ""
+  replyTimeout: "2000"
+  lockVersion: ""
 
   keycloak: 
     enabled: false
@@ -56,9 +55,9 @@ backend:
     clientId: ""
     realmName: ""
 
-  extraEnv: |
-    # - name: "uno"
-    #   value: 2
+extraEnv: |
+  # - name: "uno"
+  #   value: 2
 
 nodeSelector: {}
 

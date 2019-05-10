@@ -27,79 +27,79 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: {{ .Values.backend.env.googleApplicationCredentials }} 
+              value: {{ .Values.env.googleApplicationCredentials }} 
             - name: EVENT_STORE_BROKER_TYPE
-              value: {{ .Values.backend.env.eventStoreBrokerType }}
+              value: {{ .Values.env.eventStoreBrokerType }}
             - name: EVENT_STORE_BROKER_EVENTS_TOPIC
-              value: {{ .Values.backend.env.eventStoreBrokerEventsTopic }}
+              value: {{ .Values.env.eventStoreBrokerEventsTopic }}
             - name: EVENT_STORE_STORE_TYPE
-              value: {{ .Values.backend.env.eventStoreType }}
+              value: {{ .Values.env.eventStoreType }}
             - name: EVENT_STORE_STORE_URL
-            {{- if .Values.backend.env.secretEventStoreURL }}
+            {{- if .Values.env.secretEventStoreURL }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ .Values.backend.env.secretEventStoreURL }}
-                  key: {{ .Values.backend.env.secretEventStoreURLKey }}
+                  name: {{ .Values.env.secretEventStoreURL }}
+                  key: {{ .Values.env.secretEventStoreURLKey }}
             {{- else }}
-              value: {{ .Values.backend.env.eventStoreURL }}
+              value: {{ .Values.env.eventStoreURL }}
             {{- end }}
             - name: EVENT_STORE_STORE_AGGREGATES_DB_NAME
-              value: {{ .Values.backend.env.eventStoreAggregatesDB }}
+              value: {{ .Values.env.eventStoreAggregatesDB }}
             - name: EVENT_STORE_STORE_EVENTSTORE_DB_NAME
-              value: {{ .Values.backend.env.eventStoreNameDB }}
+              value: {{ .Values.env.eventStoreNameDB }}
             - name: MONGODB_URL
-              value: {{ .Values.backend.env.mongodbURL }}
+              value: {{ .Values.env.mongodbURL }}
             - name: MONGODB_DB_NAME
-              value: {{ .Values.backend.env.mongodbNameDB }}
+              value: {{ .Values.env.mongodbNameDB }}
             - name: JWT_PUBLIC_KEY
-            {{- if .Values.backend.env.secretJwtPublicKey }}
+            {{- if .Values.env.secretJwtPublicKey }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ .Values.backend.env.configmapJwtPublicKey }}
-                  key: {{ .Values.backend.env.configmapKeyJwtPublicKey }}
+                  name: {{ .Values.env.configmapJwtPublicKey }}
+                  key: {{ .Values.env.configmapKeyJwtPublicKey }}
             {{- else }}
-              value: {{ .Values.backend.env.jwtPublicKey }}
+              value: {{ .Values.env.jwtPublicKey }}
             {{- end }}
             - name: EMI-GATEWAY_REPLIES_TOPIC_SUBSCRIPTION
-              value: {{ .Values.backend.env.emiGatewayRepliesTopicSubscription }}
+              value: {{ .Values.env.emiGatewayRepliesTopicSubscription }}
             - name: REPLY_TIMEOUT
-              value: {{ .Values.backend.env.replyTimeout }}
+              value: {{ .Values.env.replyTimeout }}
             - name: BROKER_TYPE
-              value: {{ .Values.backend.env.replyTimeout }}
+              value: {{ .Values.env.replyTimeout }}
             - name: LOCKVERSION
-              value: {{ .Values.backend.env.lockVersion }}
-            {{- if .Values.backend.keycloak.enabled }}
+              value: {{ .Values.env.lockVersion }}
+            {{- if .Values.env.keycloak.enabled }}
             - name: KEYCLOAK_BACKEND_BASE_URL
-            {{- if .Values.backend.keycloak.configmapBaseURL }}
+            {{- if .Values.env.keycloak.configmapBaseURL }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ .Values.backend.keycloak.configmapBaseURL }}
-                  key: {{ .Values.backend.keycloak.configmapBaseURLKey }}
+                  name: {{ .Values.env.keycloak.configmapBaseURL }}
+                  key: {{ .Values.env.keycloak.configmapBaseURLKey }}
             {{- else }}
-              value: {{ .Values.backend.keycloak.baseURL }}
+              value: {{ .Values.env.keycloak.baseURL }}
             {{- end }}
             - name: KEYCLOAK_BACKEND_USER
-            {{- if .Values.backend.keycloak.secretUser }}
+            {{- if .Values.env.keycloak.secretUser }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.backend.keycloak.secretUser }}
-                  key: {{ .Values.backend.keycloak.secretUserKey }}
+                  name: {{ .Values.env.keycloak.secretUser }}
+                  key: {{ .Values.env.keycloak.secretUserKey }}
             {{- else }}
-              value: {{ .Values.backend.keycloak.user }}
+              value: {{ .Values.env.keycloak.user }}
             {{- end }}
             - name: KEYCLOAK_BACKEND_PASSWORD
-            {{- if .Values.backend.keycloak.secretUser }}
+            {{- if .Values.env.keycloak.secretUser }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.backend.keycloak.secretUser }}
-                  key: {{ .Values.backend.keycloak.secretPasswordKey }}
+                  name: {{ .Values.env.keycloak.secretUser }}
+                  key: {{ .Values.env.keycloak.secretPasswordKey }}
             {{- else}}
-              value: {{ .Values.backend.keycloak.password }}
+              value: {{ .Values.env.keycloak.password }}
             {{- end }}
             - name: KEYCLOAK_BACKEND_CLIENT_ID
-              value: {{ .Values.backend.keycloak.clientId }}
+              value: {{ .Values.env.keycloak.clientId }}
             - name: KEYCLOAK_BACKEND_REALM_NAME
-              value: {{ .Values.backend.keycloak.realmName }}
+              value: {{ .Values.env.keycloak.realmName }}
             {{- end }}
 {{- with .Values.backend.extraEnv }}
 {{ tpl . $ | indent 12 }}

@@ -19,6 +19,12 @@ spec:
         app.kubernetes.io/name: {{ include "backend-nodejs.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+    {{- if .Values.image.pullSecrets }}
+      imagePullSecrets: []
+      {{- range .Values.image.pullSecrets }}
+        - name: {{ . }}
+      {{- end }}
+    {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -48,7 +54,14 @@ spec:
             - name: EVENT_STORE_STORE_EVENTSTORE_DB_NAME
               value: {{ .Values.env.eventStoreNameDB }}
             - name: MONGODB_URL
-              value: {{ .Values.env.mongodbURL }}
+            {{- if .Values.env.secretMongodbUrl }}
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.env.secretMongodbUrl }}
+                  key: {{ .Values.env.secretMongodbUrlKey }}
+            {{- else }}
+              value: {{ .Values.env.mongodbUrl }}
+            {{- end }}
             - name: MONGODB_DB_NAME
               value: {{ .Values.env.mongodbNameDB }}
             - name: JWT_PUBLIC_KEY
@@ -88,12 +101,12 @@ spec:
               value: {{ .Values.env.keycloak.user }}
             {{- end }}
             - name: KEYCLOAK_BACKEND_PASSWORD
-            {{- if .Values.env.keycloak.secretUser }}
+            {{- if .Values.env.keycloak.secretPassword }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.env.keycloak.secretUser }}
+                  name: {{ .Values.env.keycloak.secretPassword }}
                   key: {{ .Values.env.keycloak.secretPasswordKey }}
-            {{- else}}
+            {{- else }}
               value: {{ .Values.env.keycloak.password }}
             {{- end }}
             - name: KEYCLOAK_BACKEND_CLIENT_ID
@@ -101,13 +114,13 @@ spec:
             - name: KEYCLOAK_BACKEND_REALM_NAME
               value: {{ .Values.env.keycloak.realmName }}
             {{- end }}
-{{- with .Values.backend.extraEnv }}
+{{- with .Values.extraEnv }}
 {{ tpl . $ | indent 12 }}
 {{- end }}
-      {{- with .Values.nodeSelector }}
+    {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      {{- toYaml . | nindent 8 }}
+    {{- end }}
     {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}

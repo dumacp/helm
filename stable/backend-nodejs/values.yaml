@@ -49,6 +49,7 @@ env:
     baseURL: ""
     secretUser: ""
     secretUserKey: ""
+    secretPassword: ""
     secretPasswordKey: ""
     user: ""
     password: ""

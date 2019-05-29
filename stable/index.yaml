@@ -3,9 +3,9 @@ entries:
   backend-nodejs:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-05-10T13:01:16.077848255-05:00
+    created: 2019-05-29T14:32:21.004776294-05:00
     description: A Helm chart for Kubernetes
-    digest: e3377d027f258bd6bb5239097918da9caa5c1f394464731a87667e565f6d0785
+    digest: 935bb37da34535d1fc62fb791a9b448fa7f4a8eb9c41057bc2792367f8bc71eb
     name: backend-nodejs
     urls:
     - backend-nodejs-0.1.0.tgz
@@ -13,7 +13,7 @@ entries:
   emi:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-05-10T13:01:16.078073405-05:00
+    created: 2019-05-29T14:32:21.005015374-05:00
     description: A Helm chart for Kubernetes
     digest: 319e83a1911f7e361c32c163c9d181ab2e670fa4dab624a9e8727f781a6e07f4
     name: emi
@@ -23,11 +23,11 @@ entries:
   gateway-graphql:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-05-10T13:01:16.078311721-05:00
+    created: 2019-05-29T14:32:21.005233824-05:00
     description: A Helm chart for Kubernetes
     digest: 6256961ae46187fb2be62b7f6269bd8ff57c3f32366ee4ab2af0adfafe0bc6a1
     name: gateway-graphql
     urls:
     - gateway-graphql-0.1.0.tgz
     version: 0.1.0
-generated: 2019-05-10T13:01:16.077383613-05:00
+generated: 2019-05-29T14:32:21.004498475-05:00

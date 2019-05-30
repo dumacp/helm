@@ -76,11 +76,11 @@ spec:
             - name: EMI-GATEWAY_REPLIES_TOPIC_SUBSCRIPTION
               value: {{ .Values.env.emiGatewayRepliesTopicSubscription }}
             - name: REPLY_TIMEOUT
-              value: {{ .Values.env.replyTimeout }}
+              value: {{ .Values.env.replyTimeout | quote }}
             - name: BROKER_TYPE
               value: {{ .Values.env.brokerType }}
             - name: LOCKVERSION
-              value: {{ .Values.env.lockVersion }}
+              value: {{ .Values.env.lockVersion | quote }}
             {{- if .Values.env.keycloak.enabled }}
             - name: KEYCLOAK_BACKEND_BASE_URL
             {{- if .Values.env.keycloak.configmapBaseURL }}

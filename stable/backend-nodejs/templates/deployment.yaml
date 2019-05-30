@@ -78,7 +78,7 @@ spec:
             - name: REPLY_TIMEOUT
               value: {{ .Values.env.replyTimeout }}
             - name: BROKER_TYPE
-              value: {{ .Values.env.replyTimeout }}
+              value: {{ .Values.env.brokerType }}
             - name: LOCKVERSION
               value: {{ .Values.env.lockVersion }}
             {{- if .Values.env.keycloak.enabled }}

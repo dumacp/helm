@@ -40,6 +40,7 @@ env:
   configmapKeyJwtPublicKey: ""
   emiGatewayRepliesTopicSubscription: ""
   replyTimeout: "2000"
+  brokerType: "PUBSUB"
   lockVersion: ""
 
   keycloak: 

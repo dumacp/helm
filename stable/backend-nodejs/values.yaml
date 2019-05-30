@@ -58,7 +58,7 @@ env:
 
 extraEnv: |
   # - name: "uno"
-  #   value: 2
+  #   value: "2"
 
 nodeSelector: {}
 

@@ -25,10 +25,21 @@ spec:
         - name: {{ . }}
       {{- end }}
     {{- end }}
+    {{- if .Values.configmapGcloudService }}
+      volumes:
+        - name: gcloudservice
+          configMap: {{ .Values.configmapGcloudService }}
+    {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+        {{- if .Values.configmapGcloudService }}
+          volumeMounts:
+            - name: gcloudservice
+              mountPath: "/etc/GOOGLE_APPLICATION_CREDENTIALS"
+              readOnly: true
+        {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:

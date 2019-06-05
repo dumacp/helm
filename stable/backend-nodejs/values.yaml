@@ -24,6 +24,8 @@ resources:
     cpu: 50m
     memory: 128Mi
 
+configmapGcloudService: ""
+
 env:
   googleApplicationCredentials: "/etc/GOOGLE_APPLICATION_CREDENTIALS/gcloud-service-key.json"
   eventStoreBrokerType: "PUBSUB"

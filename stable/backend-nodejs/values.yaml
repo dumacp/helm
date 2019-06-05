@@ -24,7 +24,7 @@ resources:
     cpu: 50m
     memory: 128Mi
 
-configmapGcloudService: ""
+secretGcloudService: ""
 
 env:
   googleApplicationCredentials: "/etc/GOOGLE_APPLICATION_CREDENTIALS/gcloud-service-key.json"

@@ -25,16 +25,16 @@ spec:
         - name: {{ . }}
       {{- end }}
     {{- end }}
-    {{- if .Values.configmapGcloudService }}
+    {{- if .Values.secretGcloudService }}
       volumes:
         - name: gcloudservice
-          configMap: {{ .Values.configmapGcloudService }}
+          configMap: {{ .Values.secretGcloudService }}
     {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-        {{- if .Values.configmapGcloudService }}
+        {{- if .Values.secretGcloudService }}
           volumeMounts:
             - name: gcloudservice
               mountPath: "/etc/GOOGLE_APPLICATION_CREDENTIALS"

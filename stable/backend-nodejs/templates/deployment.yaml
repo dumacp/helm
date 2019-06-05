@@ -28,7 +28,7 @@ spec:
     {{- if .Values.secretGcloudService }}
       volumes:
         - name: gcloudservice
-          configMap: {{ .Values.secretGcloudService }}
+          secret: {{ .Values.secretGcloudService }}
     {{- end }}
       containers:
         - name: {{ .Chart.Name }}

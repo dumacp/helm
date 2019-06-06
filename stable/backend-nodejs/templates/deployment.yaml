@@ -77,7 +77,7 @@ spec:
             - name: MONGODB_DB_NAME
               value: {{ .Values.env.mongodbNameDB }}
             - name: JWT_PUBLIC_KEY
-            {{- if .Values.env.secretJwtPublicKey }}
+            {{- if .Values.env.configmapJwtPublicKey }}
               valueFrom:
                 configMapKeyRef:
                   name: {{ .Values.env.configmapJwtPublicKey }}
